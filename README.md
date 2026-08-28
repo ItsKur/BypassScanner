@@ -69,4 +69,4 @@ script; check 15 uses a separate list for certificate subjects.
 
 ## Licence
 
-Not yet chosen.
+Apache 2.0 — see [LICENSE](LICENSE) for details.
