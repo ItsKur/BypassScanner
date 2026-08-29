@@ -1,24 +1,12 @@
 # BypassScanner
 
-A read-only forensic scanner for Minecraft screenshares, sesigned to be used by a moderator,
+A read-only forensic scanner for Minecraft screenshares, designed to be used by a moderator,
 **it detects only.** It never modifies, deletes, disables or repairs anything
 If a bypass is detected it's up to moderators to decide if the flags are clear signs of bypassing.
 
 > Work in progress. Tested for syntax and logic, but not yet validated against a
 > known-tampered machine
 > , contact kurvyz on discord with a clip of you running the tool if you'd like to give a demonstration
-
-## Read this before running it
-
-This tool was made fully open source so players can have peace of mind running it
-
-- **One file.** `BypassDetector.ps1`, no modules, no DLLs, no downloads
-- **Read-only.** No `Set-*`, `Remove-*`, `New-ItemProperty` or `Stop-Service`
-  against anything on the system. The only write is the optional report file
-- **No network calls.** Nothing is uploaded. No telemetry, no update check.
-- **No obfuscation.** No `Invoke-Expression`, no `-EncodedCommand`, no base64
-
-Every check has a comment header saying which files or registry keys it reads
 
 ## Usage
 
@@ -34,7 +22,6 @@ powershell -ExecutionPolicy Bypass -Command "& ([scriptblock]::Create((irm 'http
 |---|---|---|
 | `-IncludeSysMainCheck` | switch | Enables check 12 and its `Add-Type` block. Off by default. |
 | `-OutputPath` | string | Writes a plain UTF-8 copy of the report. No file is written without it. |
-| `-Quiet` | switch | Suppresses the per-check clean lines. |
 
 Exit codes: `0` clean, `1` one or more detections, `2` the run could not complete
 
@@ -60,6 +47,24 @@ that could not run will report as Unavailable.
 Check 12 is opt-in because it is the only one that compiles inline C#. It reads
 thread suspend counts via `NtQueryInformationThread` without altering them.
 
+## Disclaimer
+> **This is not a screenshare tool.** Do not use it in place of Echo, Ocean, or similar.
+> Its only purpose is to check whether a user is evading detection by those tools.
+
+This project is AI assisted, if you are experienced in powershell and would like to help this project please reach out.
+
+To contribute a new bypass detection, open an issue describing the method first.
+Pull requests are welcome for small fixes. Contributed code should be readable:
+descriptive names, comments on non-obvious logic
+
+## Philosophy behind the project
+
+I dislike running tools that I can't be certain are safe, and I know this sentiment is true for most.
+While I'm not a developer by any means I enjoy designing projects that make users more comfortable,
+the first step to that is making everything free and open source and readable.
+
 ## Licence
 
 Apache 2.0 — see [LICENSE](LICENSE) for details.
+
+
